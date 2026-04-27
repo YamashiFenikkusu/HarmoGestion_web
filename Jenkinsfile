@@ -1,11 +1,6 @@
 pipeline {
     agent any
     stages {
-        stage('Clean workspace') {
-            steps {
-                cleanWs()
-            }
-        }
         stage('Git Checkout') {
             steps {
                 script {
@@ -13,6 +8,11 @@ pipeline {
                          credentialsID: 'jenkins',
                          url: 'https://github.com/YamashiFenikkusu/HarmoGestion_web.git'
                 }
+            }
+        }
+        stage('Build Maven') {
+            steps {
+                bat 'mvn clean package'
             }
         }
     }
