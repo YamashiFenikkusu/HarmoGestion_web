@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    tools {
+        maven 'Maven'
+        jdk 'JDK25'
+    }
     stages {
         stage('Git Checkout') {
             steps {
@@ -14,6 +18,22 @@ pipeline {
             steps {
                 bat 'mvn clean package'
             }
+        }
+        stage('Rapport Allure') {
+            steps {
+                bat 'mvn allure:report'
+            }
+        }
+    }
+    post {
+        always {
+            allure([
+                includeProperties: false,
+                jdk: '',
+                properties: [],
+                reportBuildPolicy: 'ALWAYS'
+                results: [[path: 'target/allure-results']]
+            ])
         }
     }
 }
