@@ -37,9 +37,7 @@ services:
       HARMOGESTION_DB_DBNAME: jdbc:mysql://db:3306/harmogestiondb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
 
   web:
-    build:
-        context: .
-        dockerfile: Dockerfile
+    image: yamashifenikkusu/harmogestiondocker-web
     depends_on:
       - api
     ports:
