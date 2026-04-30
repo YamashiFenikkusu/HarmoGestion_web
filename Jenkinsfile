@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        registryCredential = 'docker'
+    }
     tools {
         maven 'Maven'
         jdk 'JDK25'
@@ -22,6 +25,29 @@ pipeline {
         stage('Rapport Allure') {
             steps {
                 bat 'mvn allure:report'
+            }
+        }
+        stage('Build image Docker') {
+            steps {
+                script {
+                    docker.build('yamashifenikkusu/harmogestion:latest', '-f Dockerfile .')
+                }
+            }
+        }
+        stage('Push vers Dockerhub') {
+            steps {
+                script {
+                    docker.withRegistry('', registryCredential) {
+                        docker.image('yamashifenikkusu/harmogestion:latest').push()
+                    }
+                }
+            }
+        }
+        stage('Deploiement avec le Docker Compose') {
+            steps {
+                script {
+                    bat 'docker-compose up -d --build --force-recreate --remove-orphans'
+                }
             }
         }
     }
