@@ -34,7 +34,7 @@ services:
     environment:
       HARMOGESTION_DB_USERNAME: josianne
       HARMOGESTION_DB_PASSWORD: turbo
-      HARMOGESTION_DB_DBNAME: jdbc:mysql://db:3306/harmogestiondb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      HARMOGESTION_DB_DBNAME: jdbc:mysql://db:3306/harmogestion?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
 
   web:
     image: yamashifenikkusu/harmogestiondocker-web
