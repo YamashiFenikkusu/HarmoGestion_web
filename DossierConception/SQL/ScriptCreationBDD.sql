@@ -10,7 +10,7 @@ USE harmogestion;
 --
 -- Structure de la table `Membre`
 --
-CREATE TABLE `Membre`(
+CREATE TABLE `membre`(
    `id_membre` INT AUTO_INCREMENT,
    `nom_membre` VARCHAR(30) NOT NULL,
    `prenom_membre` VARCHAR(30) NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE `Membre`(
 --
 -- Structure de la table `Instrument`
 --
-CREATE TABLE `Instrument`(
+CREATE TABLE `instrument`(
    `id_instrument` INT AUTO_INCREMENT,
    `libelle_instrument` VARCHAR(50) NOT NULL,
    PRIMARY KEY(`id_instrument`),
@@ -31,7 +31,7 @@ CREATE TABLE `Instrument`(
 --
 -- Structure de la table `Cours`
 --
-CREATE TABLE `Cours`(
+CREATE TABLE `cours`(
    `id_cours` INT AUTO_INCREMENT,
    `date_cours` DATETIME NOT NULL,
    `duree_cours` TINYINT NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE `Cours`(
 --
 -- Structure de la table `Representation`
 --
-CREATE TABLE `Representation`(
+CREATE TABLE `representation`(
    `id_representation` INT AUTO_INCREMENT,
    `nom_representation` VARCHAR(80) NOT NULL,
    `date_representation` DATETIME NOT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE `Representation`(
 --
 -- Structure de la table `Pratiquer`
 --
-CREATE TABLE `Pratiquer`(
+CREATE TABLE `pratiquer`(
    `id_membre` INT,
    `id_instrument` INT,
    `apprentissage_en_cours` BOOLEAN NOT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE `Pratiquer`(
 --
 -- Structure de la table `Participer_Cours`
 --
-CREATE TABLE `Participer_Cours`(
+CREATE TABLE `participer_cours`(
    `id_membre_apprenant` INT,
    `id_cours` INT,
    PRIMARY KEY(`id_membre_apprenant`, `id_cours`),
@@ -79,7 +79,7 @@ CREATE TABLE `Participer_Cours`(
 --
 -- Structure de la table `Participer_Representation`
 --
-CREATE TABLE `Participer_Representation`(
+CREATE TABLE `participer_representation`(
    `id_membre` INT,
    `id_representation` INT,
    PRIMARY KEY(`id_membre`, `id_representation`),
@@ -90,7 +90,7 @@ CREATE TABLE `Participer_Representation`(
 --
 -- Structure de la table `Instruments_Representation`
 --
-CREATE TABLE `Instruments_Representation`(
+CREATE TABLE `instruments_representation`(
    `id_instrument` INT,
    `id_representation` INT,
    PRIMARY KEY(`id_instrument`, `id_representation`),
